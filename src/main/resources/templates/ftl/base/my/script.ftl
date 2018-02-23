@@ -9,6 +9,7 @@
 <!-- IMPORTANT! Load jquery-ui-1.10.3.custom.min.js before bootstrap.min.js to fix bootstrap tooltip conflict with jquery ui tooltip -->
 <script src="${base}/plugins/jquery-ui/jquery-ui-1.10.3.custom.min.js" type="text/javascript"></script>
 <script src="${base}/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="${base}/plugins/bootstrap-3.3.7-dist/js/bootstrap-table.min.js" type="text/javascript"></script>
 <script src="${base}/plugins/bootstrap-hover-dropdown/twitter-bootstrap-hover-dropdown.min.js" type="text/javascript" ></script>
 <script src="${base}/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
 <script src="${base}/plugins/jquery.blockui.min.js" type="text/javascript"></script>

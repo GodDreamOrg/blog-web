@@ -20,11 +20,12 @@ import java.util.List;
  */
 @Controller
 @RequestMapping("/manager/note")
-public class NoteManagerController {
+public class NoteManagerController extends BaseMainController{
 
     @RequestMapping(value = "/toList", method = RequestMethod.GET)
-    public String toList(ModelAndView mv) {
-        return "note/list";
+    public ModelAndView toList(ModelAndView mv) {
+        mv.setViewName("note/list");
+        return mv;
     }
 
     @RequestMapping(value = "/toAdd", method = RequestMethod.GET)

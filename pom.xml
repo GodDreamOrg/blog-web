@@ -67,6 +67,9 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<fork>true</fork><!--注意要修改这里：热部署-->
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>

@@ -1,10 +1,9 @@
 package com.hgssld.blog.web.controller;
 
 import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
-import com.alibaba.fastjson.TypeReference;
 import com.hgssld.blog.web.model.TreeNoteMO;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -28,17 +27,23 @@ public class BaseMainController {
         return "/base/main";
     }
 
-    @RequestMapping("/index")
-    public ModelAndView toIndex() {
-        ModelAndView modelAndView = new ModelAndView("/base/my/index");
+    @ModelAttribute
+    public void toLeft(ModelAndView modelAndView) {
         List<TreeNoteMO> noteMOS = getNoteAllForLevelAndNum(3, 7, 20);
-        String json = "[{\"id\":1,\"name\":\"菜单1\",\"url\":\"http://www.baidu.com\"},{\"childList\":[{\"id\":3,\"name\":\"菜单3\",\"url\":\"http://www.baidu.com\"},{\"childList\":[{\"id\":5,\"name\":\"菜单5\",\"url\":\"http://www.baidu.com\"},{\"id\":6,\"name\":\"菜单6\",\"url\":\"http://www.baidu.com\"},{\"id\":7,\"name\":\"菜单7\",\"url\":\"http://www.baidu.com\"}],\"id\":4,\"name\":\"菜单4\",\"url\":\"http://www.baidu.com\"},{\"childList\":[{\"id\":9,\"name\":\"菜单9\",\"url\":\"http://www.baidu.com\"},{\"id\":10,\"name\":\"菜单10\",\"url\":\"http://www.baidu.com\"},{\"id\":11,\"name\":\"菜单11\",\"url\":\"http://www.baidu.com\"},{\"id\":12,\"name\":\"菜单12\",\"url\":\"http://www.baidu.com\"}],\"id\":8,\"name\":\"菜单8\",\"url\":\"http://www.baidu.com\"},{\"childList\":[{\"id\":14,\"name\":\"菜单14\",\"url\":\"http://www.baidu.com\"}],\"id\":13,\"name\":\"菜单13\",\"url\":\"http://www.baidu.com\"},{\"id\":15,\"name\":\"菜单15\",\"url\":\"http://www.baidu.com\"}],\"id\":2,\"name\":\"菜单2\",\"url\":\"http://www.baidu.com\"},{\"childList\":[{\"childList\":[{\"id\":18,\"name\":\"菜单18\",\"url\":\"http://www.baidu.com\"},{\"id\":19,\"name\":\"菜单19\",\"url\":\"http://www.baidu.com\"},{\"id\":20,\"name\":\"菜单20\",\"url\":\"http://www.baidu.com\"}],\"id\":17,\"name\":\"菜单17\",\"url\":\"http://www.baidu.com\"}],\"id\":16,\"name\":\"菜单16\",\"url\":\"http://www.baidu.com\"}]\n";
-
-        List<TreeNoteMO> result = JSONObject.parseObject(json, new TypeReference<List<TreeNoteMO>>() {
-        }.getType());
-
         modelAndView.addObject("noteList", noteMOS);
-        System.out.println(JSON.toJSONString(noteMOS));
+    }
+
+    @RequestMapping("/index")
+    public ModelAndView toIndex(ModelAndView modelAndView) {
+        modelAndView.setViewName("/base/my/index");
+//        List<TreeNoteMO> noteMOS = getNoteAllForLevelAndNum(3, 7, 20);
+//        String json = "[{\"id\":1,\"name\":\"菜单1\",\"url\":\"http://www.baidu.com\"},{\"childList\":[{\"id\":3,\"name\":\"菜单3\",\"url\":\"http://www.baidu.com\"},{\"childList\":[{\"id\":5,\"name\":\"菜单5\",\"url\":\"http://www.baidu.com\"},{\"id\":6,\"name\":\"菜单6\",\"url\":\"http://www.baidu.com\"},{\"id\":7,\"name\":\"菜单7\",\"url\":\"http://www.baidu.com\"}],\"id\":4,\"name\":\"菜单4\",\"url\":\"http://www.baidu.com\"},{\"childList\":[{\"id\":9,\"name\":\"菜单9\",\"url\":\"http://www.baidu.com\"},{\"id\":10,\"name\":\"菜单10\",\"url\":\"http://www.baidu.com\"},{\"id\":11,\"name\":\"菜单11\",\"url\":\"http://www.baidu.com\"},{\"id\":12,\"name\":\"菜单12\",\"url\":\"http://www.baidu.com\"}],\"id\":8,\"name\":\"菜单8\",\"url\":\"http://www.baidu.com\"},{\"childList\":[{\"id\":14,\"name\":\"菜单14\",\"url\":\"http://www.baidu.com\"}],\"id\":13,\"name\":\"菜单13\",\"url\":\"http://www.baidu.com\"},{\"id\":15,\"name\":\"菜单15\",\"url\":\"http://www.baidu.com\"}],\"id\":2,\"name\":\"菜单2\",\"url\":\"http://www.baidu.com\"},{\"childList\":[{\"childList\":[{\"id\":18,\"name\":\"菜单18\",\"url\":\"http://www.baidu.com\"},{\"id\":19,\"name\":\"菜单19\",\"url\":\"http://www.baidu.com\"},{\"id\":20,\"name\":\"菜单20\",\"url\":\"http://www.baidu.com\"}],\"id\":17,\"name\":\"菜单17\",\"url\":\"http://www.baidu.com\"}],\"id\":16,\"name\":\"菜单16\",\"url\":\"http://www.baidu.com\"}]\n";
+//
+//        List<TreeNoteMO> result = JSONObject.parseObject(json, new TypeReference<List<TreeNoteMO>>() {
+//        }.getType());
+//
+//        modelAndView.addObject("noteList", noteMOS);
+//        System.out.println("============：：：："+JSON.toJSONString(noteMOS));
         return modelAndView;
     }
 

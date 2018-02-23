@@ -29,15 +29,15 @@ var TableInit = function () {
             pageNumber:1,                       //初始化加载第一页，默认第一页
             pageSize: 10,                       //每页的记录行数（*）
             pageList: [10, 25, 50, 100],        //可供选择的每页的行数（*）
-            showColumns: true,                  //是否显示所有的列
+            showColumns: false,                  //是否显示所有的列
             dataType: 'json',                   //服务器返回数据类型
             contentType: 'application/json',
-            showRefresh: true,                  //是否显示刷新按钮
+            showRefresh: false,                  //是否显示刷新按钮
             minimumCountColumns: 2,             //最少允许的列数
             clickToSelect: true,                //是否启用点击选中行
             height: 500,                        //行高，如果没有设置height属性，表格自动根据记录条数觉得表格高度
             uniqueId: "ID",                     //每一行的唯一标识，一般为主键列
-            showToggle:true,                    //是否显示详细视图和列表视图的切换按钮
+            showToggle:false,                    //是否显示详细视图和列表视图的切换按钮
             cardView: false,                    //是否显示详细视图
             detailView: false,                   //是否显示父子表
             columns: [{
@@ -80,11 +80,15 @@ var ButtonInit = function (oTable) {
     var oInit = new Object();
     var postdata = {};
     var queryBtn = $("#btn_query");
+    var addBtn = $("#btn_add");
 
     oInit.Init = function () {
         //初始化页面上面的按钮事件
         queryBtn.click(function(){
             oTable.Refresh();
+        });
+        addBtn.click(function(){
+            alert("哈哈");
         });
     };
 
