@@ -26,3 +26,7 @@ spring:
     content-type: text/html
     request-context-attribute: request
 
+  jpa:
+    hibernate:
+      ddl-auto: update
+
