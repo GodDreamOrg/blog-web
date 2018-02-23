@@ -27,7 +27,5 @@ nbdist/
 .mvn/
 src/.DS_Store
 src/main/.DS_Store
-src/main/java/com/hgssld/blog/web/config/
 src/main/resources/.DS_Store
 src/main/resources/static/js/ftl/.DS_Store
-src/main/resources/templates/ftl/html/
