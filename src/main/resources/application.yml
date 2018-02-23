@@ -1,0 +1,28 @@
+server:
+  context-path: /
+  port: 8088
+
+
+spring:
+  datasource:
+    name: share_order
+    url: jdbc:mysql://127.0.0.1:3306/blog_web_dev?useUnicode=true&characterEncoding=UTF-8&userSSL=false
+    username: blog_web_fact
+    password: blog_web_fact
+    # 使用 druid 数据源
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.jdbc.Driver
+
+  mvc:
+    date-format: yyyy-MM-dd HH:mm:ss
+
+  freemarker:
+    enabled: true
+    template-loader-path: classpath:/templates
+    prefix: ftl/
+    suffix: .ftl
+    charset: UTF-8
+    cache: false
+    content-type: text/html
+    request-context-attribute: request
+
