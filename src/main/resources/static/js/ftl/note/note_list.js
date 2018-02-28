@@ -31,7 +31,7 @@ var TableInit = function () {
             pageList: [10, 25, 50, 100],        //可供选择的每页的行数（*）
             showColumns: false,                  //是否显示所有的列
             dataType: 'json',                   //服务器返回数据类型
-            contentType: 'application/json',
+            contentType: 'application/x-www-form-urlencoded',
             showRefresh: false,                  //是否显示刷新按钮
             minimumCountColumns: 2,             //最少允许的列数
             clickToSelect: true,                //是否启用点击选中行
@@ -51,9 +51,6 @@ var TableInit = function () {
             }, {
                 field: 'noteTitle',
                 title: '笔记标题'
-            }, {
-                field: 'saveUrl',
-                title: '部门级别'
             }
             ]
         });
@@ -64,8 +61,8 @@ var TableInit = function () {
         var temp = {   //这里的键的名字和控制器的变量名必须一直，这边改动，控制器也需要改成一样的
             limit: params.limit,   //页面大小
             offset: params.offset,  //页码
-            departmentname: $("#txt_search_departmentname").val(),
-            statu: $("#txt_search_statu").val()
+            noteName: $("#noteName").val(),
+            noteTitle: $("#noteTitle").val()
         };
         return temp;
     };
@@ -80,15 +77,53 @@ var ButtonInit = function (oTable) {
     var oInit = new Object();
     var postdata = {};
     var queryBtn = $("#btn_query");
-    var addBtn = $("#btn_add");
+    var btnEdit = $("#btn_edit");
+    var btnDelete = $("#btn_delete");
 
     oInit.Init = function () {
         //初始化页面上面的按钮事件
         queryBtn.click(function(){
             oTable.Refresh();
         });
-        addBtn.click(function(){
-            alert("哈哈");
+        btnEdit.click(function(){
+        	var a= $('#table_list').bootstrapTable('getSelections'); 
+//        	console.log("↓↓↓↓↓↓↓↓↓↓");
+//        	console.log(a);
+//        	console.log("↑↑↑↑↑↑↑↑↑↑");
+        	if(a.length<1){  
+        		alert("请选中一行");
+        		return;
+        	}
+        	if(a.length>1){
+        		alert("修改请勿多行操作");
+        		return;
+        	}
+        	$("#noteUpdateName").val(a[0].noteName);
+        	$("#noteUpdateTitle").val(a[0].noteTitle);
+        	$('#noteUpdateModal').modal('show');
+        });
+        btnDelete.click(function(){
+        	var url = base+"/manager/note/delete";
+        	var a = $('#table_list').bootstrapTable('getSelections');
+        	var list = JSON.stringify(a);
+        	if(a.length<1){  
+        		alert("请至少选中一行");
+        		return;
+        	}
+        	$.ajax({
+        		type: "POST",
+                url: url,
+                data: {
+                	"list":list
+                },
+                success: function(data){
+                         if (data == "success") {
+                        	 alert("删除成功");//TODO 成功后展示页面
+						}else{
+							alert("删除失败");
+						}
+                   }
+        	});
         });
     };
 

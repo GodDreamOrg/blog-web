@@ -39,13 +39,13 @@
                  <div class="panel-body">
                      <form id="formSearch" class="form-horizontal">
                          <div class="form-group" style="margin-top:15px">
-                             <label class="control-label col-sm-1" for="txt_search_departmentname">部门名称</label>
+                             <label class="control-label col-sm-1" for="txt_search_departmentname">笔记名称</label>
                              <div class="col-sm-3">
-                                 <input type="text" class="form-control" id="txt_search_departmentname">
+                                 <input type="text" class="form-control" id="noteName">
                              </div>
-                             <label class="control-label col-sm-1" for="txt_search_statu">状态</label>
+                             <label class="control-label col-sm-1" for="txt_search_statu">笔记标题</label>
                              <div class="col-sm-3">
-                                 <input type="text" class="form-control" id="txt_search_statu">
+                                 <input type="text" class="form-control" id="noteTitle">
                              </div>
                              <div class="col-sm-4" style="text-align:left;">
                                  <button type="button" style="margin-left:50px" id="btn_query" class="btn btn-primary">查询
@@ -62,7 +62,7 @@
 
          <#-- toolbar-->
              <div id="toolbar" class="btn-group">
-                 <button id="btn_add" type="button" class="btn btn-default">
+                 <button id="btn_add" type="button" class="btn btn-default" data-toggle="modal" data-target="#noteAddModal">
                      <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
                  </button>
                  <button id="btn_edit" type="button" class="btn btn-default">
@@ -73,6 +73,67 @@
                  </button>
              </div>
          </div>
+         
+        <!-- add 模态框（Modal） -->
+		<div class="modal fade" id="noteAddModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		    <div class="modal-dialog">
+		        <div class="modal-content">
+		            <div class="modal-header">
+		                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+		                <h4 class="modal-title" id="myModalLabel">note新增</h4>
+		            </div>
+		            <form action="${base}/manager/note/add" enctype="multipart/form-data" method="post">
+					    <table>
+					        <tr>
+					            <td>笔记名称:</td>
+					            <td><input type="text" name="noteName"></td>
+					        </tr>
+							<tr>
+					            <td>笔记标题:</td>
+					            <td><input type="text" name="noteTitle"></td>
+					        </tr>
+					        <tr>
+					            <td>请选择文件:</td>
+					            <td><input type="file" name="file"></td>
+					        </tr>
+				            <tr class="modal-footer">
+				                <td><button type="button" class="btn btn-default" data-dismiss="modal">关闭</button></td>
+				                <td><button type="submit" class="btn btn-primary">新增提交</button></td>
+				            </tr>
+					    </table>
+					</form>
+		        </div>
+		    </div>
+		</div>
+		
+		<!-- update 模态框（Modal） -->
+		<div class="modal fade" id="noteUpdateModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		    <div class="modal-dialog">
+		        <div class="modal-content">
+		            <div class="modal-header">
+		                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+		                <h4 class="modal-title" id="myModalLabel">note修改</h4>
+		            </div>
+		            <form action="${base}/manager/note/update" enctype="multipart/form-data" method="post">
+					    <table>
+					        <tr>
+					            <td>笔记名称:</td>
+					            <td><input id="noteUpdateName" type="text" name="noteName"></td>
+					        </tr>
+							<tr>
+					            <td>笔记标题:</td>
+					            <td><input id="noteUpdateTitle" type="text" name="noteTitle"></td>
+					        </tr>
+				            <tr class="modal-footer">
+				                <td><button type="button" class="btn btn-default" data-dismiss="modal">关闭</button></td>
+				                <td><button type="submit" class="btn btn-primary">修改提交</button></td>
+				            </tr>
+					    </table>
+					</form>
+		        </div>
+		    </div>
+		</div>
+         
      </div>
  </div>
 <!-- END PAGE CONTENT-->
