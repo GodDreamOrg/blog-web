@@ -49,10 +49,26 @@ public class NoteManagerController extends BaseMainController{
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public String add(HttpServletRequest request,/*
             @RequestParam("description") String description,*/
-            @RequestParam("file") MultipartFile file) throws Exception {
+            @RequestParam("file") MultipartFile file){
 //        System.out.println(description);
         //如果文件不为空，写入上传路径
-        if(!file.isEmpty()) {
+    	try {
+    		if(!file.isEmpty()) {
+        		saveFile(request,file);
+        		
+                System.out.println("success");
+                return "success";//TODO
+            } else {
+            	System.out.println("error");
+                return "error";
+            }
+		} catch (Exception e) {
+			System.out.println("error:"+e);
+            return "error";
+		}
+    }
+    
+    private void saveFile(HttpServletRequest request,MultipartFile file) throws Exception {
             //上传文件路径
             String path = request.getServletContext().getRealPath("/images/");
         	String resource = this.getClass().getResource("/").toString();
@@ -67,20 +83,33 @@ public class NoteManagerController extends BaseMainController{
             String picName = UUID.randomUUID().toString();
             //将上传文件保存到一个目标文件当中
             file.transferTo(new File(path + File.separator + picName));
-            System.out.println("success");
-            return "success";//TODO
-        } else {
-        	System.out.println("error");
-            return "error";
-        }
-    }
+	}
+    
     @ResponseBody
     @RequestMapping(value = "/update", method = RequestMethod.POST)
-    public String update(HttpServletRequest request) {
-    	String noteName = request.getParameter("noteName");
-    	String noteTiTle = request.getParameter("noteTitle");
-    	System.out.println(noteName+"::::::::::"+noteTiTle);//TODO
-        return "success";//TODO
+    public String update(HttpServletRequest request,
+    		@RequestParam("noteId") String id,
+    		@RequestParam("noteName") String noteName,
+    		@RequestParam("noteTiTle") String noteTiTle,
+    		@RequestParam("file") MultipartFile file) {
+    	try {
+	    	System.out.println("id:"+id);//TODO
+	    	System.out.println("noteName:"+noteName);//TODO
+	    	System.out.println("noteTiTle:"+noteTiTle);//TODO
+			if(!file.isEmpty()) {
+        		saveFile(request,file);
+        		
+                System.out.println("success");
+                return "success";//TODO
+            } else {
+            	System.out.println("error");
+                return "error";
+            }
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("error:"+e);
+            return "error";
+		}
     }
 
     @ResponseBody

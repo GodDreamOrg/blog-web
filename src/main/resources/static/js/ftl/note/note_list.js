@@ -98,6 +98,7 @@ var ButtonInit = function (oTable) {
         		alert("修改请勿多行操作");
         		return;
         	}
+        	$("#noteUpdateId").val(a[0].id);
         	$("#noteUpdateName").val(a[0].noteName);
         	$("#noteUpdateTitle").val(a[0].noteTitle);
         	$('#noteUpdateModal').modal('show');

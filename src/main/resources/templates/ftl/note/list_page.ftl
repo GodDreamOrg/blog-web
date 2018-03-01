@@ -116,6 +116,7 @@
 		            </div>
 		            <form action="${base}/manager/note/update" enctype="multipart/form-data" method="post">
 					    <table>
+					    	<input type="text" style="display:none" id="noteUpdateId" name="noteId"/>
 					        <tr>
 					            <td>笔记名称:</td>
 					            <td><input id="noteUpdateName" type="text" name="noteName"></td>
@@ -123,6 +124,10 @@
 							<tr>
 					            <td>笔记标题:</td>
 					            <td><input id="noteUpdateTitle" type="text" name="noteTitle"></td>
+					        </tr>
+					        <tr>
+					            <td>请选择修改后的文件:</td>
+					            <td><input type="file" name="file"></td>
 					        </tr>
 				            <tr class="modal-footer">
 				                <td><button type="button" class="btn btn-default" data-dismiss="modal">关闭</button></td>
